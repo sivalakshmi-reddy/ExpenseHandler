@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Create Report";
+}
+
+<h2>Create New Report</h2>
+
+<form asp-action="Create" method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label for="employeeId">Employee</label>
+        <select id="employeeId" name="employeeId" class="form-control">
+            <option value="">-- Select Employee --</option>
+            @foreach (var emp in ViewBag.Employees)
+            {
+                <option value="@emp.Id">@emp.Name</option>
+            }
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Index" class="btn btn-secondary">Back</a>
+</form>

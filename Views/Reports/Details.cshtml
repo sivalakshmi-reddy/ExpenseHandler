@@ -1,0 +1,72 @@
+﻿@model ExpenseHandler.Models.ReportViewModel
+
+<h2>Report Details</h2>
+
+<p><strong>Employee:</strong> @Model.EmployeeName</p>
+<p><strong>Status:</strong> @Model.Status</p>
+<p><strong>Created:</strong> @Model.CreatedAt.ToShortDateString()</p>
+<p><strong>Submitted:</strong> @(Model.SubmittedAt?.ToShortDateString() ?? "-")</p>
+<p><strong>Manager Comment:</strong> @(Model.ManagerComment ?? "-")</p>
+<p><strong>Total Amount:</strong> ₹ @Model.TotalAmount.ToString("N2")</p>
+
+<hr />
+
+<h3>Items</h3>
+@if (Model.Items.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Category</th>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Items)
+            {
+                <tr>
+                    <td>@item.CategoryName</td>
+                    <td>@item.SpendDate.ToShortDateString()</td>
+                    <td>₹ @item.Amount.ToString("N2")</td>
+                    <td>@item.Description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <p>No items added yet.</p>
+}
+
+<hr />
+
+@if (Model.Status == "Draft")
+{
+    <a asp-action="AddItem" asp-route-reportId="@Model.Id" class="btn btn-primary">Add Item</a>
+
+    <form asp-action="Submit" asp-route-id="@Model.Id" method="post" style="display:inline;">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-success">Submit Report</button>
+    </form>
+}
+
+@if (Model.Status == "Submitted")
+{
+    <form asp-action="Approve" asp-route-id="@Model.Id" method="post" style="display:inline;">
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-success">Approve</button>
+    </form>
+
+    <form asp-action="Reject" asp-route-id="@Model.Id" method="post" style="display:inline;">
+        @Html.AntiForgeryToken()
+        <input type="text" name="comment" placeholder="Reason" class="form-control d-inline" style="width:200px;" />
+        <button type="submit" class="btn btn-danger">Reject</button>
+    </form>
+}
+
+<p>
+    <a asp-action="Index" class="btn btn-secondary">Back to Reports</a>
+</p>

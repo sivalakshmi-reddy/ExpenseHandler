@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ExpenseHandler.Models.CategoryViewModel>
+
+<h2>Categories</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add Category</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var cat in Model)
+        {
+            <tr>
+                <td>@cat.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

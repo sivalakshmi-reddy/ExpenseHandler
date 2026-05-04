@@ -1,0 +1,29 @@
+﻿@model IEnumerable<ExpenseHandler.Models.EmployeeViewModel>
+
+<h2>Employees</h2>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Add Employee</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Manager</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var emp in Model)
+        {
+            <tr>
+                <td>@emp.Name</td>
+                <td>@emp.Email</td>
+                <td>@emp.ManagerName</td>
+               
+            </tr>
+        }
+    </tbody>
+</table>
