@@ -63,7 +63,7 @@ namespace ExpenseHandler.Controllers
                     .ThenInclude(i => i.Category)
                 .FirstOrDefault(x => x.Id == id);
 
-            if (r == null) return NotFound();
+            if (r == null) return ();
 
             var model = new ReportViewModel
             {
