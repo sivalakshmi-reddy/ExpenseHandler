@@ -24,7 +24,7 @@ namespace ExpenseHandler.Controllers
         // LIST
         public IActionResult Index()
         {
-            // load related data so Category/Employee are available
+            // load related data so Category/Employee are 
             var reports = _context.ExpenseReports
                 .Include(r => r.Employee)
                 .Include(r => r.Items)
