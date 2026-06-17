@@ -15,7 +15,7 @@ namespace ExpenseHandler.Controllers
         {
             _context = context;
         }
-
+      //using get api
         // GET: Categories
         public IActionResult Index()
         {
