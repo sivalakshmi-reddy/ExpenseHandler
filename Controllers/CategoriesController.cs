@@ -51,6 +51,7 @@ namespace ExpenseHandler.Controllers
             var command = new CreateCategoryCommand(_context);
             command.Execute(model.Name);
 
+            //here rediret to index method
             return RedirectToAction("Index");
         }
     }
