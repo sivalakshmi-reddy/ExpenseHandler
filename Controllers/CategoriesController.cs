@@ -10,7 +10,7 @@ namespace ExpenseHandler.Controllers
     public class CategoriesController : Controller
     {
         private readonly AppDbContext _context;
-
+       //constructor
         public CategoriesController(AppDbContext context)
         {
             _context = context;
