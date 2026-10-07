@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace ExpenseHandler.Data.Configurations
 {
-    public class CategoryConfig : IEntityTypeConfiguration<Category>
+    public class CategoryConfig : IEntityTypeConfiguration<>
     {
         public void Configure(EntityTypeBuilder<Category> builder)
         {
